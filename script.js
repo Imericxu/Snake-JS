@@ -149,17 +149,8 @@ function render() {
 
         let gradient = ctx.createLinearGradient(x0, y0, x1, y1);
         gradient.addColorStop(0, `hsl(${hue}, 94%, ${lum}%)`);
-        if (hue >= 195 && hue <= 225) {
-            hue += 5;
-            lum = 56;
-        } else if (hue >= 225 && hue <= 245) {
-            hue += 20;
-        } else if (hue >= 245 && hue <= 260) {
-            hue += 3;
-        } else {
-            hue = (hue + 10) % 361;
-            lum = 66;
-        }
+        hue = (hue + 10) % 361;
+        lum = (lum -= 0.2) > 25 ? lum : 25;
         gradient.addColorStop(1, `hsl(${hue}, 94%, ${lum}%)`);
 
         ctx.fillStyle = gradient;
