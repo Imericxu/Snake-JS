@@ -98,11 +98,6 @@ function update() {
     let tail = snake.move();
     if (snake.head_row === apple_row && snake.head_col === apple_col) {
         snake.grow(tail);
-        snake.grow(tail);
-        snake.grow(tail);
-        snake.grow(tail);
-        snake.grow(tail);
-        snake.grow(tail);
         apple_new_location();
     }
 
