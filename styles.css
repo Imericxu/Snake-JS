@@ -1,0 +1,10 @@
+#canvas {
+    background: #323232;
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        background: black;
+        color: white;
+    }
+}
