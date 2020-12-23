@@ -50,7 +50,8 @@ LinkedList.prototype.pop = function() {
     if (this.length === 1) {
         this.head = null;
         this.tail = null;
-    } else {
+    }
+    else {
         let prev = this.tail.prev;
         prev.next = null;
         this.tail = prev;
@@ -76,7 +77,8 @@ LinkedList.prototype.includes = function(target, startAt = 0) {
                 return true;
             node = node.next;
         }
-    } else {
+    }
+    else {
         while (node != null) {
             if (node.value === target)
                 return true;
