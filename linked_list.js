@@ -4,24 +4,24 @@
  * @constructor
  */
 export function LinkedList(comparator) {
-  /**
-   * @param {*} value
-   * @param {LinkedList.Node | null} next
-   * @param {LinkedList.Node | null} prev
-   * @constructor
-   */
-  this.Node = function(value, next = null, prev = null) {
-    this.value = value;
-    this.next = next;
-    this.prev = prev;
-  };
+    /**
+     * @param {*} value
+     * @param {LinkedList.Node | null} next
+     * @param {LinkedList.Node | null} prev
+     * @constructor
+     */
+    this.Node = function(value, next = null, prev = null) {
+        this.value = value;
+        this.next = next;
+        this.prev = prev;
+    };
 
-  this.comparator = comparator;
-  /** @type {LinkedList.Node | null} */
-  this.head = null;
-  /** @type {LinkedList.Node | null} */
-  this.tail = null;
-  this.length = 0;
+    this.comparator = comparator;
+    /** @type {LinkedList.Node | null} */
+    this.head = null;
+    /** @type {LinkedList.Node | null} */
+    this.tail = null;
+    this.length = 0;
 }
 
 /**
@@ -29,14 +29,14 @@ export function LinkedList(comparator) {
  * @param {*} value
  */
 LinkedList.prototype.unshift = function(value) {
-  const node = new this.Node(value, this.head);
+    const node = new this.Node(value, this.head);
 
-  if (this.length++ === 0)
-    this.tail = node;
-  else
-    this.head.prev = node;
+    if (this.length++ === 0)
+        this.tail = node;
+    else
+        this.head.prev = node;
 
-  this.head = node;
+    this.head = node;
 };
 
 /**
@@ -44,20 +44,20 @@ LinkedList.prototype.unshift = function(value) {
  * @returns {*}
  */
 LinkedList.prototype.pop = function() {
-  if (this.length === 0) return;
-  const popped = this.tail;
+    if (this.length === 0) return;
+    const popped = this.tail;
 
-  if (this.length === 1) {
-    this.head = null;
-    this.tail = null;
-  } else {
-    let prev = this.tail.prev;
-    prev.next = null;
-    this.tail = prev;
-  }
+    if (this.length === 1) {
+        this.head = null;
+        this.tail = null;
+    } else {
+        let prev = this.tail.prev;
+        prev.next = null;
+        this.tail = prev;
+    }
 
-  --this.length;
-  return popped.value;
+    --this.length;
+    return popped.value;
 };
 
 /**
@@ -66,24 +66,24 @@ LinkedList.prototype.pop = function() {
  * @return {boolean}
  */
 LinkedList.prototype.includes = function(target, startAt = 0) {
-  let node = this.head;
-  for (let i = 0; i < startAt; ++i)
-    node = node.next;
+    let node = this.head;
+    for (let i = 0; i < startAt; ++i)
+        node = node.next;
 
-  if (typeof (this.comparator) != 'undefined') {
-    while (node != null) {
-      if (this.comparator(node.value, target))
-        return true;
-      node = node.next;
+    if (typeof (this.comparator) != 'undefined') {
+        while (node != null) {
+            if (this.comparator(node.value, target))
+                return true;
+            node = node.next;
+        }
+    } else {
+        while (node != null) {
+            if (node.value === target)
+                return true;
+            node = node.next;
+        }
     }
-  } else {
-    while (node != null) {
-      if (node.value === target)
-        return true;
-      node = node.next;
-    }
-  }
-  return false;
+    return false;
 };
 
 /**
@@ -91,23 +91,23 @@ LinkedList.prototype.includes = function(target, startAt = 0) {
  * @param {*} value
  */
 LinkedList.prototype.push_back = function(value) {
-  const node = new this.Node(value, null, this.tail);
+    const node = new this.Node(value, null, this.tail);
 
-  if (this.length === 0)
-    this.head = node;
-  else
-    this.tail.next = node;
+    if (this.length === 0)
+        this.head = node;
+    else
+        this.tail.next = node;
 
-  this.tail = node;
+    this.tail = node;
 };
 
 /**
  * @param {function(*): void} callback
  */
 LinkedList.prototype.forEach = function(callback) {
-  let node = this.head;
-  while (node != null) {
-    callback(node.value);
-    node = node.next;
-  }
+    let node = this.head;
+    while (node != null) {
+        callback(node.value);
+        node = node.next;
+    }
 };
