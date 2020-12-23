@@ -7,42 +7,26 @@ const ctx = canvas.getContext('2d');
 
 const [ROWS, COLS] = [25, 25];
 
-export const DIRS = {
+export const DIRS = Object.freeze({
     UP: 1,
     DOWN: 2,
     LEFT: 3,
     RIGHT: 4,
-};
-Object.freeze(DIRS);
-
-function oppositeDir(direction) {
-    switch (direction) {
-    case DIRS.UP:
-        return DIRS.DOWN;
-    case DIRS.DOWN:
-        return DIRS.UP;
-    case DIRS.LEFT:
-        return DIRS.RIGHT;
-    case DIRS.RIGHT:
-        return DIRS.LEFT;
-    default:
-        return null;
-    }
-}
-
-let snake = new Snake(ROWS, COLS);
-
-// Apple
-let apple_row, apple_col;
-
-function apple_new_location() {
-    do {
-        apple_row = Math.floor(Math.random() * ROWS); // Excludes ROWS
-        apple_col = Math.floor(Math.random() * COLS);
-    } while (snake.includes(apple_row, apple_col));
-}
-
-apple_new_location();
+    opposite: function(dir) {
+        switch (dir) {
+        case DIRS.UP:
+            return DIRS.DOWN;
+        case DIRS.DOWN:
+            return DIRS.UP;
+        case DIRS.LEFT:
+            return DIRS.RIGHT;
+        case DIRS.RIGHT:
+            return DIRS.LEFT;
+        default:
+            return null;
+        }
+    },
+});
 
 // Input
 let dirQueue = new CircularQueue(3);
@@ -62,6 +46,20 @@ document.addEventListener('keydown', e => {
         break;
     }
 });
+
+let snake = new Snake(ROWS, COLS);
+
+// Apple
+let apple_row, apple_col;
+
+function apple_new_location() {
+    do {
+        apple_row = Math.floor(Math.random() * ROWS); // Excludes ROWS
+        apple_col = Math.floor(Math.random() * COLS);
+    } while (snake.includes(apple_row, apple_col));
+}
+
+apple_new_location();
 
 const CELL_SIZE = canvas.width / ROWS;
 
@@ -94,7 +92,7 @@ function main(timestamp) {
 function update() {
     if (dirQueue.length > 0) {
         let nextDir = dirQueue.dequeue();
-        if (snake.direction !== oppositeDir(nextDir))
+        if (snake.direction !== DIRS.opposite(nextDir))
             snake.direction = nextDir;
     }
 
