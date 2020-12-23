@@ -1,5 +1,5 @@
 import {LinkedList} from './linked_list.js';
-import {DIRS} from './script.js';
+import {DIRS} from '../script.js';
 
 /**
  * @param {number} rows

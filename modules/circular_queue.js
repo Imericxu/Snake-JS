@@ -1,4 +1,4 @@
-import {DIRS} from './script.js';
+import {DIRS} from '../script.js';
 
 export function CircularQueue(size) {
     this.MAX_SIZE = size;

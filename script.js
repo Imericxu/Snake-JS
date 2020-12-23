@@ -1,6 +1,6 @@
 'use strict';
-import {CircularQueue} from './circular_queue.js';
-import {Snake} from './snake.js';
+import {CircularQueue} from './modules/circular_queue.js';
+import {Snake} from './modules/snake.js';
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
