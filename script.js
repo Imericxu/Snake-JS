@@ -49,7 +49,6 @@ document.addEventListener('keydown', e => {
 
 let snake = new Snake(ROWS, COLS);
 
-// Apple
 let apple_row, apple_col;
 
 function apple_new_location() {
@@ -109,10 +108,9 @@ function update() {
 
     if (snake.touching_self()) {
         window.cancelAnimationFrame(frameId);
-        let element = document.createElement('p');
-        let node = document.createTextNode('You Lose!');
-        element.appendChild(node);
-        document.body.appendChild(element);
+        document.getElementById('msg').innerHTML = `
+            <p>You lose!</p>
+            <p>Score: ${snake.length}</p>`;
     }
 }
 
@@ -143,7 +141,8 @@ function render() {
         if (b.col > a.col) {
             x0 += CELL_SIZE;
             x1 += CELL_SIZE;
-        } else if (b.row > a.row) {
+        }
+        else if (b.row > a.row) {
             y0 += CELL_SIZE;
             y1 += CELL_SIZE;
         }
