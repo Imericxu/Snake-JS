@@ -1,19 +1,19 @@
 #canvas {
-    background: #323232;
+	background: #323232;
 }
 
 #msg {
-    font-family: Open Sans, Helvetica, Arial, sans-serif;
-    font-size: 24px;
+	font-family: Open Sans, Helvetica, Arial, sans-serif;
+	font-size: 24px;
 }
 
 #msg > p {
-    margin: 5px;
+	margin: 5px;
 }
 
 @media (prefers-color-scheme: dark) {
-    html {
-        background: black;
-        color: white;
-    }
+	html {
+		background: black;
+		color: white;
+	}
 }
